@@ -10,6 +10,8 @@ Currently, it only supports exported chats which are in **24h time format**
 <h2>Running the project</h2>
 To run this directly from Docker run the following code in your terminal
 
+`start docker`
+
 `docker pull anuraggc15/whatsapp_analyzer:v0`
 
 `docker run -p 80:80 anuraggc15/whatsapp_analyzer:v0`

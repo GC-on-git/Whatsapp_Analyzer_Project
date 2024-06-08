@@ -1,5 +1,4 @@
 from collections import Counter
-
 import emoji
 import pandas as pd
 from urlextract import URLExtract
@@ -37,22 +36,7 @@ def most_busy_users(df):
     return x, df
 
 
-def create_wordcloud(selected_user, df):
-    f = open('stop_hinglish.txt', 'r')
-    stop_words = f.read()
 
-    if selected_user != 'Overall':
-        df = df[df['user'] == selected_user]
-
-    temp = df[df['user'] != 'group_notification']
-    temp = temp[temp['message'] != '<Media omitted>\n']
-
-    def remove_stop_words(message):
-        y = []
-        for word in message.lower().split():
-            if word not in stop_words:
-                y.append(word)
-        return " ".join(y)
 
 
 def most_common_words(selected_user, df):

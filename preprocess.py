@@ -1,13 +1,37 @@
 import re
+from datetime import datetime
 
 import pandas as pd
 
 
-def preprocess(data):
-    pattern = r'\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{2}\s-\s'
+def convert24(date):
+    # Parse the time string into a datetime object
+    t = datetime.strptime(date, ' %I:%M %p - ')
+    # Format the datetime object into a 24-hour time string
+    return t.strftime('%H:%M - ')
 
-    messages = re.split(pattern, data)[1:]
-    dates = re.findall(pattern, data)
+
+def preprocess(data):
+    pattern_24 = '\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{2}\s-\s'
+    pattern_12 = "\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{2}\s[apm]+\s-\s"
+
+    messages_24 = re.split(pattern_24, data)[1:]
+    dates_24 = re.findall(pattern_24, data)
+
+    messages_12 = re.split(pattern_12, data)[1:]
+    dates_12 = re.findall(pattern_12, data)
+
+    date_12 = []
+
+    for date in dates_12:
+        temp = date.split(',')
+        temp[1] = convert24(temp[1])
+        str_fin = ", ".join(temp)
+        date_12.append(str_fin)
+        print(date_12)
+
+    messages = messages_12 + messages_24
+    dates = date_12 + dates_24
 
     df = pd.DataFrame({'user_message': messages, 'message_date': dates})
     # convert message_date type

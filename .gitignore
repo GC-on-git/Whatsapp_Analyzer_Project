@@ -183,3 +183,7 @@ fabric.properties
 
 # idea folder, uncomment if you don't need it
 .idea
+
+# personal folders
+.Whatsapp_chat_12
+.Whatsapp_chat_24

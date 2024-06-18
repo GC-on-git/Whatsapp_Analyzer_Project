@@ -22,6 +22,7 @@ On running it you will get a code to run this app in your local machine and it w
 After uploading an exported chat and clicking on **Show Analysis** , you can observe and analyze the chats.
 
 <h2>Further developments to be made</h2>
->1. Better graphs with time series analysis
->2. Better stopword support
->3. Sentiment analysis
+
+> 1. Better graphs with time series analysis
+> 2. Better stopword support
+> 3. Sentiment analysis
